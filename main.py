@@ -4,12 +4,12 @@ from portada import *
 from menu import *
 from fondo import *  
 from pajaro import *
+from shoot import *
 import sys
 
 def main():
     pygame.init()
 
-    # Inicializar la pantalla
     Tamaño_pantalla = (WIDTH, HEIGHT)
     screen = pygame.display.set_mode(Tamaño_pantalla)
     pygame.display.set_caption(titulo)
@@ -22,7 +22,6 @@ def main():
         if iniciar_juego:
             print("sisas")
             
-            # Crear instancias del fondo base y de las montañas
             fondo = FondoBase()
             montañas = FondoMontañas()
 
@@ -38,15 +37,14 @@ def main():
                         pygame.quit()
                         sys.exit()
 
-                # Dibujar fondo y montañas
+                    handle_shooting(event, screen)
+
+                screen.fill(WHITE)
+
                 screen.blit(fondo.image, fondo.rect)
                 vuelo.movimiento()
                 screen.blit(montañas.image, montañas.rect)
 
-                # Trigger movimiento animation
-                
-
-                # Dibujar y actualizar los sprites en movimiento
                 moving_sprites.draw(screen)
                 moving_sprites.update(0.25)
 
